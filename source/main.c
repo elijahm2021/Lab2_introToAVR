@@ -12,24 +12,17 @@
 #include "simAVRHeader.h"
 #endif
 
-enum States {Start, OFF, ON} state;
+enum States {Start, PARKING} state;
 unsigned char tmpA = 0x00;
-unsigned char tmpB = 0x00;
+unsigned char tmpC = 0x00;
+unsigned char cntavail = 0x00;
 
 void Tick() {
 	switch(state) {
 		case Start:
-			state = OFF;
+			state = PARKING;
 			break;
-		case OFF:
-			if (tmpA == 0x01) {
-				state = ON; 
-			}	
-			break;
-		case ON:
-			if (tmpA != 0x01) {
-				state = OFF;
-			}
+		case PARKING:	
 			break;
 		default:
 			break;
@@ -37,11 +30,9 @@ void Tick() {
 	switch(state) {	
 		case Start:
 			break;
-		case OFF:
-			tmpB = 0x00;
-			break;
-		case ON:
-			tmpB = 0x01;
+		case PARKING:
+			cntavail = 0x08 - tmpA;
+			tmpC = cntavail;
 			break;
 		default:
 			break;
@@ -50,12 +41,12 @@ void Tick() {
 
 int main(void) {
 	DDRA = 0x00; PORTA = 0xFF;
-	DDRB = 0xFF; PORTB = 0x00;
+	DDRC = 0xFF; PORTC = 0x00;
 	state = Start;
 	while(1) {
 		tmpA = PINA;
 		Tick();
-		PORTB = tmpB;
+		PORTC = tmpC;
 	}
     return 1;
 }
