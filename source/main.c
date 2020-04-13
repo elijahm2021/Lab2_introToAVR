@@ -12,13 +12,50 @@
 #include "simAVRHeader.h"
 #endif
 
+enum States {Start, OFF, ON} state;
+unsigned char tmpA = 0x00;
+unsigned char tmpB = 0x00;
+
+void Tick() {
+	switch(state) {
+		case Start:
+			state = OFF;
+			break;
+		case OFF:
+			if (tmpA == 0x01) {
+				state = ON; 
+			}	
+			break;
+		case ON:
+			if (tmpA != 0x01) {
+				state = OFF;
+			}
+			break;
+		default:
+			break;
+	}
+	switch(state) {	
+		case Start:
+			break;
+		case OFF:
+			tmpB = 0x00;
+			break;
+		case ON:
+			tmpB = 0x01;
+			break;
+		default:
+			break;
+	}
+}
+
 int main(void) {
-    /* Insert DDR and PORT initializations */
 	DDRA = 0x00; PORTA = 0xFF;
 	DDRB = 0xFF; PORTB = 0x00;
-    /* Insert your solution below */
-    while (1) {
-		
-    }
+	state = Start;
+	while(1) {
+		tmpA = PINA;
+		Tick();
+		PORTB = tmpB;
+	}
     return 1;
 }

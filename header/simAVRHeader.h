@@ -13,7 +13,7 @@ const struct avr_mmcu_vcd_trace_t _mytrace[] _MMCU_ = {
     {AVR_MCU_VCD_SYMBOL("PINA0"),.mask=1<<0,.what=(void*)&PINA,},
     {AVR_MCU_VCD_SYMBOL("PINA1"),.mask=1<<1,.what=(void*)&PINA,},
     {AVR_MCU_VCD_SYMBOL("PORTB"),.mask=1<<0,.what=(void*)&PORTB},
-}
+};
 
 /* Function to output through UART */
 static int uart_putchar(char c, FILE *stream) {
