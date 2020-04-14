@@ -31,7 +31,7 @@ void Tick() {
 		case Start:
 			break;
 		case PARKING:
-			cntavail = 0x08 - tmpA;
+			cntavail = 0x0F - tmpA;
 			tmpC = cntavail;
 			break;
 		default:
