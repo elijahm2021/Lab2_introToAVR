@@ -1,7 +1,7 @@
 /*	Author: emcin002
  *  Partner(s) Name: 
  *	Lab Section: 027
- *	Assignment: Lab #2  Exercise #1
+ *	Assignment: Lab #2  Exercise #4
  *	Exercise Description: [optional - include for your own benefit]
  *
  *	I acknowledge all content contained herein, excluding template or example
@@ -55,9 +55,9 @@ void Tick() {
 }
 
 int main(void) {
-	DDRA = 0x00; PORTA = 0x00;
-	DDRB = 0x00; PORTB = 0x00;
-	DDRC = 0x00; PORTC = 0x00;
+	DDRA = 0x00; PORTA = 0xFF;
+	DDRB = 0x00; PORTB = 0xFF;
+	DDRC = 0x00; PORTC = 0xFF;
 	DDRD = 0xFF; PORTD = 0x00;
 	state = Start;
 	while(1) {
