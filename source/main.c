@@ -12,17 +12,19 @@
 #include "simAVRHeader.h"
 #endif
 
-enum States {Start, PARKING} state;
+enum States {Start, CALCULATE} state;
 unsigned char tmpA = 0x00;
+unsigned char tmpB = 0x00;
 unsigned char tmpC = 0x00;
-unsigned char cntavail = 0x00;
+unsigned char tmpD = 0x00;
+unsigned char total_weight = 0x00;
 
 void Tick() {
 	switch(state) {
 		case Start:
-			state = PARKING;
+			state = CALCULATE;
 			break;
-		case PARKING:	
+		case CALCULATE:
 			break;
 		default:
 			break;
@@ -30,12 +32,17 @@ void Tick() {
 	switch(state) {	
 		case Start:
 			break;
-		case PARKING:
-			cntavail = 0x0F - tmpA;
-			tmpC = cntavail;
-			if (tmpC == 0x00) {
-				tmpC = 0x80;
+		case CALCULATE:			
+			if ((total_weight) > 140) {
+				tmpD = tmpD | 0x01;
 			}
+			if (tmpA > tmpC && ((tmpA - tmpC) > 80)) {
+				tmpD = tmpD | 0x02;
+			}
+			if (tmpC > tmpA && ((tmpC-tmpA) > 80)) {
+				tmpD = tmpD | 0x02;
+			}
+			tmpD = tmpD | (total_weight << 2);
 			break;
 		default:
 			break;
@@ -43,13 +50,18 @@ void Tick() {
 }
 
 int main(void) {
-	DDRA = 0x00; PORTA = 0xFF;
-	DDRC = 0xFF; PORTC = 0x00;
+	DDRA = 0x00; PORTA = 0x00;
+	DDRB = 0x00; PORTB = 0x00;
+	DDRC = 0x00; PORTC = 0x00;
+	DDRD = 0xFF; PORTD = 0x00;
 	state = Start;
 	while(1) {
 		tmpA = PINA;
+		tmpB = PINB;
+		tmpC = PINC;
+		total_weight = tmpA + tmpB + tmpC;
 		Tick();
-		PORTC = tmpC;
+		PORTD = tmpD;
 	}
     return 1;
 }
