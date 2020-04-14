@@ -1,7 +1,7 @@
 /*	Author: emcin002
  *  Partner(s) Name: 
  *	Lab Section: 027
- *	Assignment: Lab #2  Exercise #1
+ *	Assignment: Lab #2  Exercise #3
  *	Exercise Description: [optional - include for your own benefit]
  *
  *	I acknowledge all content contained herein, excluding template or example
