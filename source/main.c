@@ -42,7 +42,12 @@ void Tick() {
 			if (tmpC > tmpA && ((tmpC-tmpA) > 80)) {
 				tmpD = tmpD | 0x02;
 			}
-			tmpD = tmpD | (total_weight << 2);
+			if (total_weight <= 255) {
+				tmpD = tmpD | (total_weight & 0xFC);
+			}
+			else {
+				tmpD = tmpD | 0xFC;
+			}
 			break;
 		default:
 			break;
