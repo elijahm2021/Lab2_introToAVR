@@ -32,7 +32,8 @@ void Tick() {
 	switch(state) {	
 		case Start:
 			break;
-		case CALCULATE:			
+		case CALCULATE:
+			tmpD = 0x00;			
 			if ((total_weight) > 140) {
 				tmpD = tmpD | 0x01;
 			}
