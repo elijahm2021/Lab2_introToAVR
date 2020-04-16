@@ -23,104 +23,128 @@
 #       With x as the DDR (A,B,C,D)
 #       Example: printDDRB
 
+test "PINA: 0, PORTC: 4"
+setPINA 0
+continue 5
+expectPORTC 4
+checkResult
+
+test "PINA: 7, PORTC: 1"
+setPINA 7
+continue 5
+expectPORTC 1
+checkResult
+
+test "PINA: 15, PORTC: 0x80"
+setPINA 15
+continue 5
+expectPORTC 0x80
+checkResult
+
+test "PINA: 12, PORTC: 2"
+setPINA 12
+continue 5
+expectPORTC 2
+checkResult
+
 echo ======================================================\n
 echo Running all tests..."\n\n
 
-test "PINA: 0x00 => PORTC: 0x0F"
-setPINA 0x00
-continue 5
-expectPORTC 0x0F
-checkResult 
 
-test "PINA: 0x01 => PORTC: 0x0E"
-setPINA 0x01
-continue 5
-expectPORTC 0x0E
-checkResult 
 
-test "PINA: 0x02 => PORTC: 0x0D"
-setPINA 0x02
-continue 5
-expectPORTC 0x0D
-checkResult 
 
-test "PINA: 0x03 => PORTC: 0x0C"
-setPINA 0x03
-continue 5
-expectPORTC 0x0C
-checkResult 
 
-test "PINA: 0x04 => PORTC: 0x0B"
-setPINA 0x04
-continue 5
-expectPORTC 0x0B
-checkResult 
 
-test "PINA: 0x05 => PORTC: 0x0A"
-setPINA 0x05
-continue 5
-expectPORTC 0x0A
-checkResult 
 
-test "PINA: 0x06 => PORTC: 0x09"
-setPINA 0x06
-continue 5
-expectPORTC 0x09
-checkResult 
 
-test "PINA: 0x07 => PORTC: 0x08"
-setPINA 0x07
-continue 5
-expectPORTC 0x08
-checkResult 
 
-test "PINA: 0x08 => PORTC: 0x07"
-setPINA 0x08
-continue 5
-expectPORTC 0x07
-checkResult 
 
-test "PINA: 0x09 => PORTC: 0x06"
-setPINA 0x09
-continue 5
-expectPORTC 0x06
-checkResult 
 
-test "PINA: 0x0A => PORTC: 0x05"
-setPINA 0x0A
-continue 5
-expectPORTC 0x05
-checkResult 
 
-test "PINA: 0x0B => PORTC: 0x04"
-setPINA 0x0B
-continue 5
-expectPORTC 0x04
-checkResult 
 
-test "PINA: 0x0C => PORTC: 0x03"
-setPINA 0x0C
-continue 5
-expectPORTC 0x03
-checkResult 
 
-test "PINA: 0x0D => PORTC: 0x02"
-setPINA 0x0D
-continue 5
-expectPORTC 0x02
-checkResult 
 
-test "PINA: 0x0E => PORTC: 0x01"
-setPINA 0x0E
-continue 5
-expectPORTC 0x01
-checkResult 
 
-test "PINA: 0x0F => PORTC: 0x80"
-setPINA 0x0F
-continue 5
-expectPORTC 0x80
-checkResult 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Report on how many tests passed/tests ran
 set $passed=$tests-$failed
