@@ -22,7 +22,7 @@ void Tick() {
 		case Start:
 			state = PARKING;
 			break;
-		case PARKING:	
+		case PARKING:
 			break;
 		default:
 			break;
@@ -31,8 +31,19 @@ void Tick() {
 		case Start:
 			break;
 		case PARKING:
-			cntavail = 0x0F - tmpA;
-			tmpC = cntavail;
+			cntavail = 0x04;
+			if (0x01 == (tmpA & 0x01)) {
+				cntavail--;
+			}
+			if (0x02 == (tmpA & 0x02)) {
+				cntavail--;
+			}
+			if (0x04 == (tmpA & 0x04)) {
+				cntavail--;
+			}
+			if (0x08 == (tmpA & 0x08)) {
+				cntavail--;
+			}
 			break;
 		default:
 			break;
@@ -46,7 +57,7 @@ int main(void) {
 	while(1) {
 		tmpA = PINA;
 		Tick();
-		PORTC = tmpC;
+		PORTC = cntavail;
 	}
     return 1;
 }
